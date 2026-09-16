@@ -52,6 +52,8 @@ builder.Services.AddAutoMapper(cfg =>
 builder.Services.AddValidatorsFromAssemblyContaining<ProductRequestValidator>();
 builder.Services.AddSingleton<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddSingleton<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 var app = builder.Build();
 
@@ -85,6 +87,104 @@ app.MapGet("/health", () => Results.Ok(new
     version = "1.0.0"
 }))
 .WithName("HealthCheck");
+
+var tasksV1 = app.MapGroup("/api/v1/tasks")
+    .WithTags("Tasks V1");
+
+tasksV1.MapGet("/", async (ITaskService service) =>
+{
+    return Results.Ok(await service.GetAllV1Async());
+})
+.WithName("GetAllTasksV1")
+.Produces<IEnumerable<TaskResponseV1>>();
+
+tasksV1.MapGet("/{id:guid}", async (Guid id, ITaskService service) =>
+{
+    var result = await service.GetByIdV1Async(id);
+    return result == null
+        ? Results.NotFound(new { error = $"Задача с ID {id} не найдена" })
+        : Results.Ok(result);
+})
+.WithName("GetTaskByIdV1")
+.Produces<TaskResponseV1>()
+.Produces(StatusCodes.Status404NotFound);
+
+tasksV1.MapPost("/", async (TaskRequest request, ITaskService service) =>
+{
+    var result = await service.CreateV1Async(request);
+    return Results.Created($"/api/v1/tasks/{result.Id}", result);
+})
+.WithName("CreateTaskV1")
+.AddEndpointFilter<ValidationFilter<TaskRequest>>()
+.Produces<TaskResponseV1>(StatusCodes.Status201Created)
+.ProducesValidationProblem();
+
+tasksV1.MapPut("/{id:guid}", async (Guid id, TaskRequest request, ITaskService service) =>
+{
+    var result = await service.UpdateV1Async(id, request);
+    return result == null
+        ? Results.NotFound(new { error = $"Задача с ID {id} не найдена" })
+        : Results.Ok(result);
+})
+.WithName("UpdateTaskV1")
+.AddEndpointFilter<ValidationFilter<TaskRequest>>()
+.Produces<TaskResponseV1>()
+.Produces(StatusCodes.Status404NotFound)
+.ProducesValidationProblem();
+
+var tasksV2 = app.MapGroup("/api/v2/tasks")
+    .WithTags("Tasks V2");
+
+tasksV2.MapGet("/", async (ITaskService service) =>
+{
+    return Results.Ok(await service.GetAllV2Async());
+})
+.WithName("GetAllTasksV2")
+.Produces<IEnumerable<TaskResponseV2>>();
+
+tasksV2.MapGet("/{id:guid}", async (Guid id, ITaskService service) =>
+{
+    var result = await service.GetByIdV2Async(id);
+    return result == null
+        ? Results.NotFound(new { error = $"Задача с ID {id} не найдена" })
+        : Results.Ok(result);
+})
+.WithName("GetTaskByIdV2")
+.Produces<TaskResponseV2>()
+.Produces(StatusCodes.Status404NotFound);
+
+tasksV2.MapPost("/", async (TaskRequest request, ITaskService service) =>
+{
+    var result = await service.CreateV2Async(request);
+    return Results.Created($"/api/v2/tasks/{result.Id}", result);
+})
+.WithName("CreateTaskV2")
+.AddEndpointFilter<ValidationFilter<TaskRequest>>()
+.Produces<TaskResponseV2>(StatusCodes.Status201Created)
+.ProducesValidationProblem();
+
+tasksV2.MapPut("/{id:guid}", async (Guid id, TaskRequest request, ITaskService service) =>
+{
+    var result = await service.UpdateV2Async(id, request);
+    return result == null
+        ? Results.NotFound(new { error = $"Задача с ID {id} не найдена" })
+        : Results.Ok(result);
+})
+.WithName("UpdateTaskV2")
+.AddEndpointFilter<ValidationFilter<TaskRequest>>()
+.Produces<TaskResponseV2>()
+.Produces(StatusCodes.Status404NotFound)
+.ProducesValidationProblem();
+
+tasksV2.MapDelete("/{id:guid}", async (Guid id, ITaskService service) =>
+{
+    return await service.DeleteAsync(id)
+        ? Results.NoContent()
+        : Results.NotFound(new { error = $"Задача с ID {id} не найдена" });
+})
+.WithName("DeleteTaskV2")
+.Produces(StatusCodes.Status204NoContent)
+.Produces(StatusCodes.Status404NotFound);
 
 var v1 = app.MapGroup("/api/v1/products")
     .WithTags("Products V1");
