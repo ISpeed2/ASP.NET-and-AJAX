@@ -1,7 +1,0 @@
-bin/
-obj/
-.DS_Store
-*.user
-*.suo
-.vscode/
-wwwroot/lib/
