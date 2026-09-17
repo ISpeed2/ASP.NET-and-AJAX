@@ -1,0 +1,52 @@
+﻿@model ASP3.Models.QuestionnaireRequest
+@{
+    ViewData["Title"] = "Заявка участника";
+}
+
+<div class="questionnaire-shell">
+    <section class="questionnaire-intro">
+        <p class="eyebrow">Новая заявка</p>
+        <h1>Расскажите о себе</h1>
+        <p class="lead">Заполните анкету, чтобы отправить заявку участника.</p>
+    </section>
+
+    <form asp-action="Index" method="post" class="questionnaire-form">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+        <div class="form-grid">
+            <div class="field">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" autocomplete="given-name" placeholder="Иван" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="field">
+                <label asp-for="Surname"></label>
+                <input asp-for="Surname" autocomplete="family-name" placeholder="Иванов" />
+                <span asp-validation-for="Surname"></span>
+            </div>
+            <div class="field">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" autocomplete="email" placeholder="ivan@example.com" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="field">
+                <label asp-for="Age"></label>
+                <input asp-for="Age" type="number" min="14" max="120" placeholder="20" />
+                <span asp-validation-for="Age"></span>
+            </div>
+            <div class="field field-wide">
+                <label asp-for="City"></label>
+                <input asp-for="City" autocomplete="address-level2" placeholder="Москва" />
+                <span asp-validation-for="City"></span>
+            </div>
+            <div class="field field-wide">
+                <label asp-for="About"></label>
+                <textarea asp-for="About" rows="4" placeholder="Коротко расскажите о себе"></textarea>
+                <span asp-validation-for="About"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-button">Отправить заявку</button>
+    </form>
+</div>

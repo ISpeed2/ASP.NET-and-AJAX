@@ -1,0 +1,36 @@
+:root { --ink: #1c2420; --muted: #68736d; --paper: #f4f1e9; --surface: #fffdf8; --line: #d7ded5; --accent: #c4563d; --accent-dark: #9e3e2a; --mint: #dbe9d9; }
+html { font-size: 16px; min-height: 100%; }
+body { min-height: 100vh; margin: 0; color: var(--ink); background: radial-gradient(circle at 90% 0%, #e3edde 0, transparent 32rem), var(--paper); font-family: Georgia, 'Times New Roman', serif; }
+.navbar { background: rgba(255, 253, 248, .88) !important; border-bottom: 1px solid var(--line) !important; backdrop-filter: blur(10px); }
+.navbar-brand { color: var(--accent) !important; font-family: Arial, sans-serif; font-size: .83rem; font-weight: 700; letter-spacing: .14em; }
+.nav-link, footer { color: var(--muted) !important; font-family: Arial, sans-serif; font-size: .82rem; }
+.container main { padding-top: 3.5rem; }
+.hero-copy, .success-page, .lifecycle-page { max-width: 760px; margin: 0 auto; padding: 2rem 0; }
+.eyebrow { margin: 0 0 .75rem; color: var(--accent); font-family: Arial, sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+h1 { margin-bottom: .8rem; font-size: clamp(2.6rem, 8vw, 5.3rem); line-height: .96; letter-spacing: -.04em; }
+.lead { max-width: 580px; color: var(--muted); font-family: Arial, sans-serif; font-size: 1rem; line-height: 1.65; }
+.application-form, .result-card { max-width: 760px; margin: 1.5rem auto 5rem; padding: clamp(1.4rem, 5vw, 3rem); border: 1px solid var(--line); background: rgba(255,253,248,.88); box-shadow: 0 1rem 3rem rgba(40, 60, 45, .08); }
+.field { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.25rem; }
+label, input, select, button, .field span, .validation-summary, dt, dd, .outline-button { font-family: Arial, sans-serif; }
+label { color: var(--muted); font-size: .78rem; font-weight: 700; }
+input, select { width: 100%; box-sizing: border-box; border: 1px solid var(--line); border-radius: 0; padding: .85rem .9rem; color: var(--ink); background: var(--surface); font-size: .95rem; }
+input:focus, select:focus { outline: 2px solid var(--mint); border-color: var(--accent); }
+.field span, .validation-summary { color: var(--accent-dark); font-size: .78rem; }
+.validation-summary:empty { display: none; }
+button, .outline-button { display: inline-block; border: 0; border-radius: 0; padding: .9rem 1.25rem; color: #fffdf8; background: var(--accent); font-size: .8rem; font-weight: 700; text-decoration: none; transition: transform 160ms ease, background 160ms ease; }
+button:hover, .outline-button:hover { color: #fffdf8; background: var(--accent-dark); transform: translateY(-2px); }
+.success-icon { display: grid; width: 3.5rem; height: 3.5rem; margin-bottom: 2rem; place-items: center; border-radius: 50%; background: var(--mint); font-family: Arial, sans-serif; font-size: 1.6rem; font-weight: 700; }
+.result-card { margin-top: 2.5rem; }
+dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+dt { margin-bottom: .35rem; color: var(--muted); font-size: .7rem; font-weight: 700; text-transform: uppercase; }
+dd { margin: 0; overflow-wrap: anywhere; font-size: .95rem; }
+.outline-button { color: var(--ink); background: transparent; border: 1px solid var(--ink); }
+.outline-button:hover { color: #fffdf8; }
+.lifecycle-list { margin: 2rem 0; border-top: 1px solid var(--line); }
+.lifecycle-list article { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding: 1.3rem 0; border-bottom: 1px solid var(--line); }
+.lifecycle-list article > span { color: var(--accent); font-family: Arial, sans-serif; font-size: .8rem; font-weight: 700; }
+.lifecycle-list h2 { margin: 0 0 .35rem; font-size: 1.15rem; }
+.lifecycle-list p { margin: 0; color: var(--muted); font-family: Arial, sans-serif; font-size: .9rem; line-height: 1.55; }
+code { color: var(--accent-dark); }
+footer { border-color: var(--line) !important; }
+@media (max-width: 640px) { .container main { padding-top: 1.5rem; } .hero-copy, .success-page, .lifecycle-page { padding-top: 1rem; } dl { grid-template-columns: 1fr; } }

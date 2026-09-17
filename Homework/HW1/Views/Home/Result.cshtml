@@ -1,0 +1,32 @@
+@model ASP3.Models.QuestionnaireRequest
+@{
+    ViewData["Title"] = "Заявка отправлена";
+}
+
+<div class="result-shell">
+    <div class="success-mark">✓</div>
+    <p class="eyebrow">Готово</p>
+    <h1>Заявка успешно заполнена</h1>
+    <p class="lead">Спасибо, @Model.Name! Ваша анкета сохранена и готова к рассмотрению.</p>
+
+    <section class="profile-card" aria-labelledby="profile-title">
+        <div class="profile-card-header">
+            <div>
+                <p class="eyebrow">Анкета человека</p>
+                <h2 id="profile-title">@Model.Name @Model.Surname</h2>
+            </div>
+            <span class="status-badge">Принято</span>
+        </div>
+        <dl class="profile-details">
+            <div><dt>Электронная почта</dt><dd>@Model.Email</dd></div>
+            <div><dt>Возраст</dt><dd>@Model.Age</dd></div>
+            <div><dt>Город</dt><dd>@Model.City</dd></div>
+            @if (!string.IsNullOrWhiteSpace(Model.About))
+            {
+                <div class="profile-about"><dt>О себе</dt><dd>@Model.About</dd></div>
+            }
+        </dl>
+    </section>
+
+    <a asp-action="Index" class="secondary-button">Заполнить ещё одну анкету</a>
+</div>

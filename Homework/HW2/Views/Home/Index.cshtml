@@ -1,0 +1,38 @@
+﻿@model MiddlewareHomework.Models.RegistrationRequest
+@{
+    ViewData["Title"] = "Заявка";
+}
+
+<div class="hero-copy">
+    <p class="eyebrow">ASP.NET Core Middleware</p>
+    <h1>Заявка на участие</h1>
+    <p class="lead">Форма проходит через middleware, контроллер и представление. Заполните её, чтобы увидеть результат полного жизненного цикла запроса.</p>
+</div>
+
+<form asp-action="Index" method="post" class="application-form">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+    <div class="field">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" placeholder="Ваше имя" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="field">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" placeholder="name@example.com" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div class="field">
+        <label asp-for="Direction"></label>
+        <select asp-for="Direction">
+            <option value="">Выберите направление</option>
+            <option>Backend-разработка</option>
+            <option>Frontend-разработка</option>
+            <option>Тестирование</option>
+        </select>
+        <span asp-validation-for="Direction"></span>
+    </div>
+
+    <button type="submit">Отправить заявку</button>
+</form>

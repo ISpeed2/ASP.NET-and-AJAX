@@ -1,0 +1,21 @@
+@model MiddlewareHomework.Models.RegistrationRequest
+@{
+    ViewData["Title"] = "Заявка принята";
+}
+
+<div class="success-page">
+    <div class="success-icon">✓</div>
+    <p class="eyebrow">Цикл завершён</p>
+    <h1>Заявка принята</h1>
+    <p class="lead">Middleware обработал запрос до и после контроллера. Данные успешно прошли валидацию.</p>
+
+    <section class="result-card">
+        <p class="eyebrow">Данные формы</p>
+        <dl>
+            <div><dt>Имя</dt><dd>@Model.Name</dd></div>
+            <div><dt>Почта</dt><dd>@Model.Email</dd></div>
+            <div><dt>Направление</dt><dd>@Model.Direction</dd></div>
+        </dl>
+        <a asp-action="Index" class="outline-button">Новая заявка</a>
+    </section>
+</div>

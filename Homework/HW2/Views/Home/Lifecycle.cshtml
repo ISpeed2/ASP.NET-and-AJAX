@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Жизненный цикл";
+}
+
+<div class="lifecycle-page">
+    <p class="eyebrow">Как это работает</p>
+    <h1>Жизненный цикл запроса</h1>
+    <div class="lifecycle-list">
+        <article><span>01</span><div><h2>Запуск приложения</h2><p>Создаётся WebApplicationBuilder, регистрируются MVC-сервисы и строится конвейер.</p></div></article>
+        <article><span>02</span><div><h2>Вход в middleware</h2><p>RequestLifecycleMiddleware получает HttpContext, TraceId и запускает секундомер.</p></div></article>
+        <article><span>03</span><div><h2>Передача контроллеру</h2><p>Вызов <code>await _next(context)</code> передаёт запрос маршрутизации и HomeController.</p></div></article>
+        <article><span>04</span><div><h2>Форма и валидация</h2><p>Контроллер принимает RegistrationRequest, проверяет ModelState и возвращает View.</p></div></article>
+        <article><span>05</span><div><h2>Возврат ответа</h2><p>Middleware получает StatusCode, добавляет заголовки и записывает время выполнения.</p></div></article>
+    </div>
+    <a asp-action="Index" class="outline-button">Открыть форму</a>
+</div>
