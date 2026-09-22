@@ -1,0 +1,41 @@
+@model Product
+@{
+    ViewData["Title"] = "Новый товар";
+}
+
+<section class="form-heading">
+    <p class="eyebrow">Каталог / новый товар</p>
+    <h1>Добавьте<br /><em>что-то хорошее.</em></h1>
+    <p>Заполните карточку товара. После сохранения он появится в каталоге и откроется отдельной страницей.</p>
+</section>
+
+<form asp-action="Create" method="post" class="product-form">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+    <div class="form-grid">
+        <div class="field field-wide">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" placeholder="Например, виниловый проигрыватель" autofocus />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Category"></label>
+            <input asp-for="Category" placeholder="Электроника" />
+            <span asp-validation-for="Category"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Price"></label>
+            <div class="price-input"><input asp-for="Price" type="number" min="0.01" step="0.01" placeholder="0.00" /><span>₽</span></div>
+            <span asp-validation-for="Price"></span>
+        </div>
+        <div class="field field-wide">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" rows="5" placeholder="Коротко расскажите о товаре"></textarea>
+            <span asp-validation-for="Description"></span>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="button button-primary">Сохранить товар</button>
+        <a class="button button-quiet" asp-action="Index">Отмена</a>
+    </div>
+</form>

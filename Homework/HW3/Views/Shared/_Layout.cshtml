@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Каталог товаров</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="page-shell header-inner">
+            <a class="brand" asp-controller="Home" asp-action="Index">ВИТРИНА<span>/</span>03</a>
+            <nav aria-label="Основная навигация">
+                <a asp-controller="Home" asp-action="Index">Товары</a>
+                <a class="nav-action" asp-controller="Home" asp-action="Create">Добавить товар</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-shell">
+        @RenderBody()
+    </main>
+    <footer class="page-shell site-footer">Учебный проект ASP.NET MVC · 2026</footer>
+</body>
+</html>

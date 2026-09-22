@@ -1,0 +1,20 @@
+@model Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<article class="details-page">
+    <a class="back-link" asp-action="Index">← Вернуться к товарам</a>
+    <div class="detail-layout">
+        <div class="detail-index">№ @Model.Id.ToString("D2")</div>
+        <div class="detail-content">
+            <p class="eyebrow">@Model.Category</p>
+            <h1>@Model.Name</h1>
+            <p class="detail-price">@Model.Price.ToString("N2") <span>₽</span></p>
+            <div class="detail-rule"></div>
+            <h2>О товаре</h2>
+            <p class="detail-description">@(string.IsNullOrWhiteSpace(Model.Description) ? "Описание пока не добавлено." : Model.Description)</p>
+            <a class="button button-primary" asp-action="Create">Добавить еще товар</a>
+        </div>
+    </div>
+</article>

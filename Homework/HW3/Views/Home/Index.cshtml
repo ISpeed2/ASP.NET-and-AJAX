@@ -1,0 +1,41 @@
+@model IReadOnlyList<Product>
+@{
+    ViewData["Title"] = "Товары";
+}
+
+<section class="catalog-heading">
+    <div>
+        <p class="eyebrow">Каталог / домашняя страница</p>
+        <h1>Товары, которые<br /><em>остаются в памяти.</em></h1>
+    </div>
+    <a class="button button-primary" asp-action="Create">+ Новый товар</a>
+</section>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <h2>Каталог пока пуст</h2>
+        <p>Добавьте первый товар, чтобы он появился здесь.</p>
+        <a class="button button-primary" asp-action="Create">Добавить товар</a>
+    </div>
+}
+else
+{
+    <section class="product-grid" aria-label="Список товаров">
+        @foreach (var product in Model)
+        {
+            <a class="product-card" asp-action="Details" asp-route-id="@product.Id">
+                <span class="product-number">№ @product.Id.ToString("D2")</span>
+                <div class="product-card-body">
+                    <p class="product-category">@product.Category</p>
+                    <h2>@product.Name</h2>
+                    <p class="product-description">@(string.IsNullOrWhiteSpace(product.Description) ? "Описание пока не добавлено." : product.Description)</p>
+                </div>
+                <div class="product-card-footer">
+                    <strong>@product.Price.ToString("N2") ₽</strong>
+                    <span class="arrow" aria-hidden="true">↗</span>
+                </div>
+            </a>
+        }
+    </section>
+}
