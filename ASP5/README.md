@@ -49,3 +49,19 @@ curl -k -X POST https://localhost:5001/api/v2/books \
 curl -k "https://localhost:5001/api/books?api-version=2.0"
 curl -k -H "api-version: 2.0" https://localhost:5001/api/books
 ```
+
+## Скриншоты тестирования
+
+Успешная сборка проекта:
+
+![Успешная сборка ASP5](docs/screenshots/01-build-success.png)
+
+Проверка API v1. Ответ `200 OK` содержит заголовки `Deprecation`, `Sunset`
+и ссылку на актуальную версию API:
+
+![Тест API v1](docs/screenshots/02-api-v1-test.png)
+
+Проверка API v2. Ответ `200 OK` содержит актуальную модель цены с суммой и
+валютой:
+
+![Тест API v2](docs/screenshots/03-api-v2-test.png)
