@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] — Secure Files</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="container nav">
+            <a class="brand" asp-controller="Home" asp-action="Index">Secure Files</a>
+            <div class="links">
+                <a asp-controller="Home" asp-action="Index">Главная</a>
+                <a asp-controller="Threats" asp-action="Index">Модель угроз</a>
+                <a asp-controller="Files" asp-action="Index">Файлы</a>
+            </div>
+        </nav>
+    </header>
+    <main class="container">@RenderBody()</main>
+    <footer class="container">ASP6 · ASP.NET Core MVC · STRIDE</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

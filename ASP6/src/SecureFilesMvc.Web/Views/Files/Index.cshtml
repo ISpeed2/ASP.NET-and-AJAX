@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Файлы";
+}
+
+<div class="page-heading">
+    <span class="eyebrow">TRUST BOUNDARY TB-01</span>
+    <h1>Загрузка файлов</h1>
+    <p>Разрешены PNG, JPG, GIF, PDF и TXT размером до 10 МБ. Тип проверяется по содержимому.</p>
+</div>
+
+<section class="upload-panel">
+    <form id="upload-form">
+        <label for="api-key">API-ключ</label>
+        <input id="api-key" name="apiKey" type="password" value="demo-secret-key-12345" autocomplete="off" />
+
+        <label class="drop-zone" for="file-input">
+            <strong>Выберите файл</strong>
+            <span id="file-name">или перетащите его сюда</span>
+            <input id="file-input" name="file" type="file" accept=".png,.jpg,.jpeg,.gif,.pdf,.txt" />
+        </label>
+
+        <div class="progress" hidden><span id="progress-bar"></span></div>
+        <button class="button" type="submit">Загрузить безопасно</button>
+    </form>
+    <div id="result" class="result" aria-live="polite"></div>
+</section>
+
+<section class="download-panel">
+    <h2>Скачать по ID</h2>
+    <form id="download-form" class="inline-form">
+        <input id="file-id" type="text" maxlength="32" placeholder="32-значный ID файла" />
+        <button class="button secondary" type="submit">Скачать</button>
+    </form>
+</section>
+
+@section Scripts {
+    <script src="~/js/files-client.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,35 @@
+@model ThreatModelViewModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<section class="hero">
+    <span class="eyebrow">SECURE BY DESIGN</span>
+    <h1>Безопасная загрузка файлов</h1>
+    <p>Учебный проект показывает границы доверия, угрозы STRIDE и защитные меры на каждом слое приложения.</p>
+    <div class="actions">
+        <a class="button" asp-controller="Files" asp-action="Index">Загрузить файл</a>
+        <a class="button secondary" asp-controller="Threats" asp-action="Index">Открыть threat model</a>
+    </div>
+</section>
+
+<section class="stats">
+    <article><strong>@Model.TrustBoundaries.Count</strong><span>границы доверия</span></article>
+    <article><strong>@Model.Threats.Count</strong><span>угроз STRIDE</span></article>
+    <article><strong>@Model.Backlog.Count(item => item.Status.ToString() == "Done")/@Model.Backlog.Count</strong><span>задач закрыто</span></article>
+</section>
+
+<section>
+    <h2>Основные контрмеры</h2>
+    <div class="cards">
+        @foreach (var boundary in Model.TrustBoundaries)
+        {
+            <article class="card">
+                <span class="badge">@boundary.Id</span>
+                <h3>@boundary.Name</h3>
+                <p>@boundary.CrossingData</p>
+                <ul>@foreach (var control in boundary.Controls) { <li>@control</li> }</ul>
+            </article>
+        }
+    </div>
+</section>

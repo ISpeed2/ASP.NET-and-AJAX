@@ -1,0 +1,41 @@
+@model ThreatModelViewModel
+@{
+    ViewData["Title"] = "Модель угроз";
+}
+
+<div class="page-heading">
+    <span class="eyebrow">STRIDE</span>
+    <h1>Модель угроз</h1>
+    <p>Каждая угроза связана с границей доверия, оценкой риска и задачей security backlog.</p>
+</div>
+
+<div class="table-wrap">
+    <table>
+        <thead><tr><th>ID</th><th>Категория</th><th>Угроза</th><th>Граница</th><th>Риск</th></tr></thead>
+        <tbody>
+        @foreach (var threat in Model.Threats.OrderByDescending(item => item.RiskScore))
+        {
+            <tr>
+                <td><span class="badge">@threat.Id</span></td>
+                <td>@threat.Category</td>
+                <td><strong>@threat.Title</strong><small>@threat.Description</small></td>
+                <td>@threat.TrustBoundaryId</td>
+                <td><span class="risk @(threat.RiskScore >= 8 ? "high" : "medium")">@threat.RiskScore.ToString("0.0")</span></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<h2>Security backlog</h2>
+<div class="cards backlog">
+@foreach (var item in Model.Backlog)
+{
+    <article class="card">
+        <div class="card-top"><span class="badge">@item.Id</span><span class="status @item.Status.ToString().ToLowerInvariant()">@item.Status</span></div>
+        <h3>@item.Title</h3>
+        <p>@item.MitigationSummary</p>
+        <small>@item.ThreatId · @item.Priority · @item.Owner</small>
+    </article>
+}
+</div>
