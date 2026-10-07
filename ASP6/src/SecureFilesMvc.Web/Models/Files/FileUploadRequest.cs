@@ -6,4 +6,9 @@ public class FileUploadRequest
 {
     [Required]
     public IFormFile? File { get; init; }
+
+    [StringLength(500)]
+    public string? Description { get; init; }
+
+    public bool ConfirmLicense { get; init; }
 }

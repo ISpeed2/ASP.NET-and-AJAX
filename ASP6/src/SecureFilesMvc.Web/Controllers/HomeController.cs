@@ -8,7 +8,7 @@ public class HomeController(IThreatCatalogService catalog) : Controller
 {
     public IActionResult Index() => View(new ThreatModelViewModel
     {
-        TrustBoundaries = catalog.GetTrustBoundaries(),
+        Boundaries = catalog.GetTrustBoundaries(),
         Threats = catalog.GetThreats(),
         Backlog = catalog.GetBacklog()
     });

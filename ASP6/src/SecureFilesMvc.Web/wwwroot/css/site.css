@@ -57,7 +57,10 @@ td small { display: block; margin-top: .25rem; max-width: 540px; }
 .risk.medium { background: rgba(255, 190, 71, .15); color: #ffc968; }
 .upload-panel { max-width: 760px; }
 label { display: block; font-weight: 700; margin-bottom: .45rem; }
-input[type="password"], input[type="text"] { width: 100%; border: 1px solid var(--border); border-radius: .65rem; padding: .8rem; background: #091625; color: var(--text); font: inherit; }
+input[type="password"], input[type="text"], textarea { width: 100%; border: 1px solid var(--border); border-radius: .65rem; padding: .8rem; background: #091625; color: var(--text); font: inherit; }
+textarea { min-height: 6rem; resize: vertical; }
+.checkbox-row { display: flex; align-items: center; gap: .65rem; margin: 1rem 0; color: var(--muted); font-weight: 500; }
+.checkbox-row input { width: 1.1rem; height: 1.1rem; accent-color: var(--accent); }
 .drop-zone { margin: 1.3rem 0; border: 1px dashed #3e668e; border-radius: .8rem; padding: 2.5rem; text-align: center; cursor: pointer; }
 .drop-zone strong, .drop-zone span { display: block; }
 .drop-zone span { color: var(--muted); font-weight: 400; }

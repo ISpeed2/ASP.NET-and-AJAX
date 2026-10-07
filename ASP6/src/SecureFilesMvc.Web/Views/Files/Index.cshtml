@@ -19,6 +19,14 @@
             <input id="file-input" name="file" type="file" accept=".png,.jpg,.jpeg,.gif,.pdf,.txt" />
         </label>
 
+        <label for="description">Описание</label>
+        <textarea id="description" name="description" maxlength="500" placeholder="Необязательное описание файла"></textarea>
+
+        <label class="checkbox-row">
+            <input id="confirm-license" name="confirmLicense" type="checkbox" />
+            <span>Подтверждаю право на загрузку этого файла</span>
+        </label>
+
         <div class="progress" hidden><span id="progress-bar"></span></div>
         <button class="button" type="submit">Загрузить безопасно</button>
     </form>

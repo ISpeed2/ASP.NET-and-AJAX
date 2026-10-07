@@ -34,6 +34,8 @@
             return new Promise((resolve, reject) => {
                 const form = new FormData();
                 form.append('file', file, file.name);
+                form.append('description', options.description || '');
+                form.append('confirmLicense', String(Boolean(options.confirmLicense)));
                 const xhr = new XMLHttpRequest();
                 xhr.open('POST', apiBase);
                 xhr.setRequestHeader('X-Api-Key', options.apiKey);
@@ -109,6 +111,8 @@
         try {
             const response = await FilesClient.upload(fileInput.files[0], {
                 apiKey: document.querySelector('#api-key').value,
+                description: document.querySelector('#description').value,
+                confirmLicense: document.querySelector('#confirm-license').checked,
                 onProgress: value => { progressBar.style.width = `${value}%`; }
             });
             document.querySelector('#file-id').value = response.data.id;

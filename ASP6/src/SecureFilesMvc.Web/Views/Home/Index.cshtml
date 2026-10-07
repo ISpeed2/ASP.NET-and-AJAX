@@ -14,7 +14,7 @@
 </section>
 
 <section class="stats">
-    <article><strong>@Model.TrustBoundaries.Count</strong><span>границы доверия</span></article>
+    <article><strong>@Model.Boundaries.Count</strong><span>границы доверия</span></article>
     <article><strong>@Model.Threats.Count</strong><span>угроз STRIDE</span></article>
     <article><strong>@Model.Backlog.Count(item => item.Status.ToString() == "Done")/@Model.Backlog.Count</strong><span>задач закрыто</span></article>
 </section>
@@ -22,7 +22,7 @@
 <section>
     <h2>Основные контрмеры</h2>
     <div class="cards">
-        @foreach (var boundary in Model.TrustBoundaries)
+        @foreach (var boundary in Model.Boundaries)
         {
             <article class="card">
                 <span class="badge">@boundary.Id</span>

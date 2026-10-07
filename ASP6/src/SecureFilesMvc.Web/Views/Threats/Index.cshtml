@@ -9,6 +9,25 @@
     <p>Каждая угроза связана с границей доверия, оценкой риска и задачей security backlog.</p>
 </div>
 
+<h2>Границы доверия</h2>
+<div class="table-wrap">
+    <table>
+        <thead><tr><th>ID</th><th>Имя</th><th>Данные</th><th>Контрмеры</th></tr></thead>
+        <tbody>
+        @foreach (var boundary in Model.Boundaries)
+        {
+            <tr>
+                <td><span class="badge">@boundary.Id</span></td>
+                <td><strong>@boundary.Name</strong></td>
+                <td>@boundary.CrossingData</td>
+                <td><ul>@foreach (var control in boundary.Controls) { <li>@control</li> }</ul></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<h2>Угрозы (STRIDE)</h2>
 <div class="table-wrap">
     <table>
         <thead><tr><th>ID</th><th>Категория</th><th>Угроза</th><th>Граница</th><th>Риск</th></tr></thead>
